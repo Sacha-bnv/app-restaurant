@@ -1,0 +1,34 @@
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+  <mat-toolbar color="warn" class="example-toolbar">
+    <mat-icon class='menuHover' (click)="snav.toggle()">menu</mat-icon>
+    <h1 class="example-app-name">Restaurant</h1>
+    <h1 class="example-app-name" style="position: fixed; right: 46%;">RestaurantApp</h1>
+    <mat-icon (click)="openBottomSheet()" class="menuHover" matBadge="7" matBadgePosition="above after" style="position: fixed; right: 2%;">notifications</mat-icon>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="example-sidenav-container"
+                          [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+                  [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" position="start">
+      <!-- Options -->
+      <mat-nav-list>
+        <mat-list-item><mat-icon style="margin-right: 16px;">home</mat-icon>Accueil</mat-list-item>
+        <mat-list-item (click)="test2()"><mat-icon style="margin-right: 16px;">history</mat-icon>Mes commandes</mat-list-item>
+        <mat-list-item><mat-icon style="margin-right: 16px;">directions_bike</mat-icon>Livraisons</mat-list-item>
+        <mat-list-item><mat-icon style="margin-right: 16px;">message</mat-icon>Mes messages</mat-list-item>
+      </mat-nav-list>
+      <!-- Connexion -->
+      <mat-nav-list>
+        <mat-list-item class="login" (click)='snav.toggle() && login()'>Se connecter</mat-list-item>
+        <mat-list-item class="signUp" (click)='snav.toggle() && signUp()'>Créer un compte</mat-list-item>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content style="margin-top: 130px;">
+
+      <app-sign-up *ngIf="test === true"></app-sign-up>
+
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+</div>

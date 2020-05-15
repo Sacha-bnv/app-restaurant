@@ -1,0 +1,43 @@
+<div *ngIf="isLoading" style="position: absolute; left: 46%; top: 40%; color: #673ab7">
+    <mat-spinner ></mat-spinner>
+    Chargement . . .
+</div>
+
+<mat-tab-group mat-stretch-tabs>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">history</mat-icon>
+            <span style="margin-left: 8px;">Historique</span>
+        </ng-template>
+        <mat-accordion class="example-headers-align" *ngIf="!isLoading">          
+            <mat-expansion-panel *ngFor="let commande of commandes; let i = index" [expanded]="step === i" (opened)="setStep(i)" hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{commande.date}}
+                </mat-panel-title>
+                <mat-panel-description>
+                    commande n°{{commande.id}}
+                  <span>{{commande.prix}} €</span>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+          
+              {{commande.prenomClient}} {{commande.nomClient}}
+              {{i}}
+              <mat-action-row>                
+                <button *ngIf="isFirst(i)" mat-button color="warn" (click)="prevStep()">Fermer</button>
+                <button *ngIf="!isFirst(i)" mat-button color="warn" (click)="prevStep()">Précédent</button>
+                <button *ngIf="isLast(i)" mat-button color="primary" (click)="nextStep()">Fermer</button>
+                <button *ngIf="!isLast(i)" mat-button color="primary" (click)="nextStep()">Suivant</button>
+              </mat-action-row>
+            </mat-expansion-panel>
+          
+          </mat-accordion>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">local_dining</mat-icon>
+            <span style="margin-left: 8px;">En cours</span>
+        </ng-template>
+        content 2
+    </mat-tab>
+</mat-tab-group>
