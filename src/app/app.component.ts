@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { NotificationsComponent } from './notifications/notifications.component'
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { ConnexionService } from './services/connexion.service';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +25,8 @@ export class AppComponent {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router: Router, private _bottomSheet: MatBottomSheet) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router: Router, 
+    private _bottomSheet: MatBottomSheet, private cnx: ConnexionService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);

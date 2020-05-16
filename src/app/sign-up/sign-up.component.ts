@@ -3,6 +3,8 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
 import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { NotificationsComponent } from '../notifications/notifications.component'
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { DateAdapter } from '@angular/material/core';
 
 @Component({
   selector: 'app-sign-up',
@@ -11,34 +13,25 @@ import { NotificationsComponent } from '../notifications/notifications.component
 })
 export class SignUpComponent implements OnInit {
 
-  hide = true;
-  
-  ngOnInit() {}
+  isLinear = false;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
 
-  mobileQuery: MediaQueryList;
-
-  private _mobileQueryListener: () => void;
-
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router: Router, private _bottomSheet: MatBottomSheet) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
+  constructor(private _formBuilder: FormBuilder, private _adapter: DateAdapter<any>) {
+    this._adapter.setLocale('fr');
   }
 
-  openBottomSheet(): void {
-    this._bottomSheet.open(NotificationsComponent);
-  }
-
-  ngOnDestroy(): void {
-    this.mobileQuery.removeListener(this._mobileQueryListener);
-  }
-
-  login() {
-    setTimeout(() => this.router.navigate(['login']), 500);
-  }
-
-  signUp() {
-    setTimeout(() => this.router.navigate(['signUp']), 500);
+  ngOnInit() {
+    this.firstFormGroup = this._formBuilder.group({
+      premierCtrl: ['', Validators.required],
+      deuxiemeCtrl: ['', Validators.required],
+      troisiemeCtrl: ['', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      premierCtrl: ['', Validators.required],
+      deuxiemeCtrl: ['', Validators.required],
+      troisiemeCtrl: ['', Validators.required]
+    });
   }
 
 }

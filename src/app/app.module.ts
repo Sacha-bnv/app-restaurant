@@ -46,6 +46,7 @@ import {MatTreeModule} from '@angular/material/tree';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { LstCommandesComponent } from './lst-commandes/lst-commandes.component';
 import { HttpClientModule } from '@angular/common/http';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,8 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,

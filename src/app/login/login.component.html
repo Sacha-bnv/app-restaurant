@@ -5,22 +5,23 @@
         <form class="example-form">
             <mat-form-field class="example-full-width" style="margin-top: 20px;">
                 <mat-label>Adresse email</mat-label>
-                <input matInput placeholder="Ex. prenom.nom@exemple.com">
+                <input (keyup.enter)="login()" (keyup)="onKeyLogin($event)" matInput placeholder="Ex. prenom.nom@exemple.com">
             </mat-form-field>
             <mat-form-field class="example-full-width" style="margin-top: 20px;">
                 <mat-label>Mot de passe</mat-label>
-                <input matInput [type]="hide ? 'password' : 'text'">
+                <input (keyup.enter)="login()" (keyup)="onKeyPassword($event)" matInput [type]="hide ? 'password' : 'text'">
                 <div class="hidePwd" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </div>
             </mat-form-field>
+            <p class="error">{{error}}</p>
             <p>
-                <a style="margin-top: 10px;">Mot de passe oublié</a> 
+                <a class="link" style="margin-top: 10px;">Mot de passe oublié</a> 
             </p>
             <p>
-                <a style="margin-top: 10px;">Créer un compte</a> 
+                <a class="link" style="margin-top: 10px;">Créer un compte</a> 
             </p>
-            <button mat-stroked-button color="warn" style="margin-top: 20px; left: 40%">Connexion</button>
+            <a class="button" (click)="login()" mat-stroked-button color="warn" style="margin-top: 20px; left: 40%">Connexion</a>
         </form>
     </div>
     <div class="col-sm"></div>

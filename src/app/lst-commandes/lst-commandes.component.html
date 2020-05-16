@@ -22,7 +22,6 @@
               </mat-expansion-panel-header>
           
               {{commande.prenomClient}} {{commande.nomClient}}
-              {{i}}
               <mat-action-row>                
                 <button *ngIf="isFirst(i)" mat-button color="warn" (click)="prevStep()">Fermer</button>
                 <button *ngIf="!isFirst(i)" mat-button color="warn" (click)="prevStep()">Précédent</button>

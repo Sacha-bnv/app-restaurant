@@ -44,15 +44,24 @@
         width: 100%;
     }
 
-    a {
+    .link {
         font-size: 12px;
         color: #f44336;
         //#f44336
         text-decoration: underline;
     }
 
-    a:hover {
+    .link:hover {
         cursor: pointer;
+    }
+
+    .button:hover {
+        color: #f44336;
+    }
+
+    .error {
+        color: red;
+        font-size: 14px;
     }
 
     .login {

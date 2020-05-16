@@ -23,26 +23,16 @@ export class LstCommandesComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading = true;
-    this.getCommandes();
+    this.getHistoriqueCommandes();
   }
 
-  getCommandes() {
-    this.commandeService.getCommandes().then(res => { 
-      this.commandesString = res.body;
-      console.log(this.commandesString);
-      this.nbCommandes = this.commandesString.length;
-      if (this.nbCommandes !== 0) {
-        this.commandes = new Array(this.nbCommandes);
-        for (let i = 0; i < this.nbCommandes; i ++) {
-          this.commandes[i] = {
-            id: this.commandesString[i].id, date: this.commandesString[i].date, 
-            prix: this.commandesString[i].prix, idClient: '', prenomClient: 'prenomTest', nomClient: 'nomTest', plats: null
-          }
-        }
-      }
+  getHistoriqueCommandes() {
+    this.commandeService.getCommandes(1);
+    this.commandeService.commandesObs.subscribe(cmd => {
+      this.commandes = cmd;
+      console.log(this.commandes)
       this.isLoading = false;
-      console.log(this.commandes);
-    });    
+    });
   }
 
   isFirst(index: number): boolean {

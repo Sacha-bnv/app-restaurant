@@ -1,23 +1,60 @@
-
-        <div class="row">
-            <div class="col-sm"></div>
-            <div class="col-sm">
-                <h3>Créer un compte</h3>
-                <form class="example-form">
-                    <mat-form-field class="example-full-width" style="margin-top: 20px;">
-                        <mat-label>Adresse email</mat-label>
-                       <input matInput placeholder="Ex. prenom.nom@exemple.com">
-                    </mat-form-field>
-                    <mat-form-field class="example-full-width" style="margin-top: 20px;">
-                        <mat-label>Mot de passe</mat-label>
-                        <input matInput [type]="hide ? 'password' : 'text'">
-                    </mat-form-field>
-                    <mat-form-field class="example-full-width" style="margin-top: 20px;">
-                        <mat-label>Mot de passe</mat-label>
-                        <input matInput [type]="hide ? 'password' : 'text'">
-                    </mat-form-field>
-                    <button mat-stroked-button color="warn" style="margin-top: 20px; left: 40%">Confirmer</button>
-                </form>
-            </div>
-            <div class="col-sm"></div>
+<mat-horizontal-stepper linear #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup" class="example-form">
+        <ng-template matStepLabel>Informations de connexion</ng-template>
+        <mat-form-field class="example-full-width" style="margin-top: 20px;">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="Exemple: nom.prenom@example.com" formControlName="premierCtrl" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" style="margin-top: 20px;">
+            <mat-label>Mot de passe</mat-label>
+            <input type="password" matInput formControlName="deuxiemeCtrl" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" style="margin-top: 20px;">
+            <mat-label>Confirmer le mot de passe</mat-label>
+            <input type="password" matInput formControlName="troisiemeCtrl" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Suivant</button>
         </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" [optional]="isOptional">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Informations personnelles</ng-template>
+        <p>
+            <mat-form-field>
+                <mat-label>Prénom</mat-label>
+                <input matInput formControlName="premierCtrl" required>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <mat-label>Nom</mat-label>
+                <input matInput formControlName="deuxiemeCtrl" required>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <mat-label>Date de naissance</mat-label>
+                <input matInput formControlName="troisiemeCtrl" [matDatepicker]="picker" required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker touchUi #picker></mat-datepicker>
+            </mat-form-field>
+        </p>       
+        
+        <div>
+          <button mat-button matStepperPrevious>Précédent</button>
+          <button mat-button matStepperNext>Suivant</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Adresse</ng-template>
+      <p>Vous avez terminé !</p>
+      <div>
+        <button mat-button matStepperPrevious>Précédent</button>
+        <button mat-button (click)="stepper.reset()">Annuler</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>

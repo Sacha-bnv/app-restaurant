@@ -1,9 +1,11 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
-    <mat-toolbar color="warn" class="example-toolbar">
+    <mat-toolbar color="primary" class="example-toolbar">
       <mat-icon class='menuHover' (click)="snav.toggle()">menu</mat-icon>
       <h1 class="example-app-name">Restaurant</h1>
       <h1 class="example-app-name" style="position: fixed; right: 46%;">RestaurantApp</h1>
-      <mat-icon (click)="openBottomSheet()" class="menuHover" matBadge="7" matBadgePosition="above after" style="position: fixed; right: 2%;">notifications</mat-icon>
+      <mat-icon *ngIf="!cnx.Status" (click)="openBottomSheet()" class="menuHover" style="position: absolute; right: 20px;">more_vert</mat-icon>
+      <mat-icon *ngIf="!cnx.Status" (click)="openBottomSheet()" class="menuHover" matBadge="4" matBadgePosition="above after" matBadgeColor="warn" style="position: fixed; right: 70px;">notifications</mat-icon>
+      <mat-icon *ngIf="!cnx.Status" (click)="openBottomSheet()" class="menuHover" matBadge="7" matBadgePosition="above after" matBadgeColor="warn" style="position: absolute; right: 120px;">message</mat-icon>
     </mat-toolbar>
   
     <mat-sidenav-container class="example-sidenav-container"
@@ -19,8 +21,10 @@
         </mat-nav-list>
         <!-- Connexion -->
         <mat-nav-list>
-          <mat-list-item class="login" (click)='snav.toggle() && goToLogin()'>Se connecter</mat-list-item>
-          <mat-list-item class="signUp" (click)='snav.toggle() && goToSignUp()'>Créer un compte</mat-list-item>
+          <mat-list-item *ngIf="!cnx.Status" class="login" (click)='snav.toggle() && goToLogin()'>Se connecter</mat-list-item>
+          <mat-list-item *ngIf="!cnx.Status" class="signUp" (click)='snav.toggle() && goToSignUp()'>Créer un compte</mat-list-item>
+          <mat-list-item *ngIf="cnx.Status" class="login" (click)='snav.toggle() && goToLogin()'><mat-icon>account_circle</mat-icon><span style="margin-left: 10px;">Mon compte</span></mat-list-item>
+          <mat-list-item *ngIf="cnx.Status" class="signUp" (click)='snav.toggle() && goToSignUp()'><mat-icon>subdirectory_arrow_right</mat-icon><span style="margin-left: 10px;">Déconnexion</span></mat-list-item>
         </mat-nav-list>
       </mat-sidenav>
   
