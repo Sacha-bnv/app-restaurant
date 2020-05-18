@@ -28,24 +28,12 @@ export class HomeComponent implements OnInit {
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
-  test2() {
-    this.test = !this.test;
+  rechercher(): void {
+
   }
 
-  openBottomSheet(): void {
-    this._bottomSheet.open(NotificationsComponent);
-  }
+  onKeyPassword(event: any): void {
 
-  ngOnDestroy(): void {
-    this.mobileQuery.removeListener(this._mobileQueryListener);
-  }
-
-  login() {
-    setTimeout(() => this.router.navigate(['login']), 500);
-  }
-
-  signUp() {
-    setTimeout(() => this.router.navigate(['signUp']), 500);
   }
 
 }

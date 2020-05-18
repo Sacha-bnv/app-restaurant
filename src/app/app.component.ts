@@ -16,10 +16,10 @@ export class AppComponent {
   hide = true;
 
   //root
-  private homeRoot = false;
-  private signUpRoot = false;
-  private loginRoot = false;
-  private lstCommandesRoot = false;
+  homeRoot = false;
+  signUpRoot = false;
+  loginRoot = false;
+  lstCommandesRoot = false;
 
   //CSS
   margin = '';
