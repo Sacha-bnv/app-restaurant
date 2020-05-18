@@ -6,4 +6,5 @@ export interface PersonneInterface {
     nomRue: string;
     CP: number;
     ville: string;
+    role: string;
 }

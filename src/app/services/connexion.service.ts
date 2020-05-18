@@ -29,6 +29,10 @@ export class ConnexionService {
     return this.user;
   }
 
+  public get Role(): string {
+    return this.user.role;
+  }
+
   connectUser(login: string, password: string) {
     
     return this.http.get<any>('http://localhost//wsrestaurant/serveur/index.php?login=' + login + '&password=' + password)
@@ -42,7 +46,7 @@ export class ConnexionService {
               const u = data[0];
               this.user = {
                 nom: u.nom, prenom: u.prenom, dateNaissance: u.dateNaissance,
-                 numeroRue: u.numeroRue, nomRue: u.nomRue, CP: u.CP, ville: u.ville
+                numeroRue: u.numeroRue, nomRue: u.nomRue, CP: u.CP, ville: u.ville, role: u.role
               };
               this.connected = true;
             }

@@ -11,13 +11,21 @@ import { ConnexionService } from './services/connexion.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+  //data
   hide = true;
-  signUpRoot = false;
-  loginRoot = false;
-  lstCommandesRoot = false;
+
+  //root
+  private homeRoot = false;
+  private signUpRoot = false;
+  private loginRoot = false;
+  private lstCommandesRoot = false;
 
   //CSS
   margin = '';
+
+  private currentUserSubject;
+  private currentUser;
 
   ngOnInit() {}
 
@@ -30,6 +38,21 @@ export class AppComponent {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+    this.goToHome();
+  }
+
+  getStatus(): boolean {
+    return this.cnx.Status;
+  }
+
+  getRole(): string {
+    let ret: string;
+    if(this.getStatus()) {
+      ret = this.cnx.Role;
+    } else {
+      ret = 'visiteur';
+    }
+    return ret;
   }
 
   openBottomSheet(): void {
@@ -45,6 +68,12 @@ export class AppComponent {
     this.signUpRoot = false;
     this.loginRoot = false;
     this.lstCommandesRoot = false;
+  }
+
+  goToHome(): void {
+    this.setAllRootFalse();
+    this.margin = '0px';
+    this.homeRoot = true;
   }
 
   goToLogin(): void {

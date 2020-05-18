@@ -1,11 +1,11 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
-    <mat-toolbar color="primary" class="example-toolbar">
+    <mat-toolbar color="warn" class="example-toolbar">
       <mat-icon class='menuHover' (click)="snav.toggle()">menu</mat-icon>
       <h1 class="example-app-name">Restaurant</h1>
       <h1 class="example-app-name" style="position: fixed; right: 46%;">RestaurantApp</h1>
-      <mat-icon *ngIf="!cnx.Status" (click)="openBottomSheet()" class="menuHover" style="position: absolute; right: 20px;">more_vert</mat-icon>
-      <mat-icon *ngIf="!cnx.Status" (click)="openBottomSheet()" class="menuHover" matBadge="4" matBadgePosition="above after" matBadgeColor="warn" style="position: fixed; right: 70px;">notifications</mat-icon>
-      <mat-icon *ngIf="!cnx.Status" (click)="openBottomSheet()" class="menuHover" matBadge="7" matBadgePosition="above after" matBadgeColor="warn" style="position: absolute; right: 120px;">message</mat-icon>
+      <mat-icon *ngIf="!getStatus()" (click)="openBottomSheet()" class="menuHover" style="position: absolute; right: 20px;">more_vert</mat-icon>
+      <mat-icon *ngIf="!getStatus()" (click)="openBottomSheet()" class="menuHover" matBadge="4" matBadgePosition="above after" matBadgeColor="primary" style="position: fixed; right: 70px;">notifications</mat-icon>
+      <mat-icon *ngIf="!getStatus()" (click)="openBottomSheet()" class="menuHover" matBadge="7" matBadgePosition="above after" matBadgeColor="primary" style="position: absolute; right: 120px;">message</mat-icon>
     </mat-toolbar>
   
     <mat-sidenav-container class="example-sidenav-container"
@@ -16,15 +16,15 @@
         <mat-nav-list>
           <mat-list-item><mat-icon style="margin-right: 16px;">home</mat-icon>Accueil</mat-list-item>
           <mat-list-item (click)="snav.toggle() && goToCommandes()"><mat-icon style="margin-right: 16px;">history</mat-icon>Mes commandes</mat-list-item>
-          <mat-list-item><mat-icon style="margin-right: 16px;">directions_bike</mat-icon>Livraisons</mat-list-item>
-          <mat-list-item><mat-icon style="margin-right: 16px;">message</mat-icon>Mes messages</mat-list-item>
+          <!--<mat-list-item><mat-icon style="margin-right: 16px;">directions_bike</mat-icon>Livraisons</mat-list-item>
+          <mat-list-item *ngIf="getRole() === admin"><mat-icon style="margin-right: 16px;">message</mat-icon>Mes messages</mat-list-item>-->
         </mat-nav-list>
         <!-- Connexion -->
         <mat-nav-list>
-          <mat-list-item *ngIf="!cnx.Status" class="login" (click)='snav.toggle() && goToLogin()'>Se connecter</mat-list-item>
-          <mat-list-item *ngIf="!cnx.Status" class="signUp" (click)='snav.toggle() && goToSignUp()'>Créer un compte</mat-list-item>
-          <mat-list-item *ngIf="cnx.Status" class="login" (click)='snav.toggle() && goToLogin()'><mat-icon>account_circle</mat-icon><span style="margin-left: 10px;">Mon compte</span></mat-list-item>
-          <mat-list-item *ngIf="cnx.Status" class="signUp" (click)='snav.toggle() && goToSignUp()'><mat-icon>subdirectory_arrow_right</mat-icon><span style="margin-left: 10px;">Déconnexion</span></mat-list-item>
+          <mat-list-item *ngIf="!getStatus()" class="login" (click)='snav.toggle() && goToLogin()'>Se connecter</mat-list-item>
+          <mat-list-item *ngIf="!getStatus()" class="signUp" (click)='snav.toggle() && goToSignUp()'>Créer un compte</mat-list-item>
+          <mat-list-item *ngIf="getStatus()" class="login" (click)='snav.toggle() && goToLogin()'><mat-icon>account_circle</mat-icon><span style="margin-left: 10px;">Mon compte</span></mat-list-item>
+          <mat-list-item *ngIf="getStatus()" class="signUp" (click)='snav.toggle() && goToSignUp()'><mat-icon>subdirectory_arrow_right</mat-icon><span style="margin-left: 10px;">Déconnexion</span></mat-list-item>
         </mat-nav-list>
       </mat-sidenav>
   
@@ -33,6 +33,7 @@
         <app-login *ngIf="loginRoot === true"></app-login>
         <app-sign-up *ngIf="signUpRoot === true"></app-sign-up>   
         <app-lst-commandes *ngIf="lstCommandesRoot === true"></app-lst-commandes>     
+        <app-home *ngIf="homeRoot === true"></app-home>
   
       </mat-sidenav-content>
   

@@ -19,7 +19,7 @@
         </div>
       </form>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup" [optional]="isOptional">
+    <mat-step [stepControl]="secondFormGroup">
       <form [formGroup]="secondFormGroup">
         <ng-template matStepLabel>Informations personnelles</ng-template>
         <p>
@@ -52,9 +52,9 @@
     <mat-step>
       <ng-template matStepLabel>Adresse</ng-template>
       <p>Vous avez terminé !</p>
+      <p>Un email vous a été envoyé afin de valider votre compte.</p>
       <div>
-        <button mat-button matStepperPrevious>Précédent</button>
-        <button mat-button (click)="stepper.reset()">Annuler</button>
+        <button mat-button (click)="goToLogin()">Se connecter</button>
       </div>
     </mat-step>
   </mat-horizontal-stepper>
