@@ -8,12 +8,14 @@
       <mat-icon *ngIf="!getStatus()" (click)="openBottomSheet()" class="menuHover" matBadge="7" matBadgePosition="above after" matBadgeColor="primary" style="position: absolute; right: 120px;">message</mat-icon>
     </mat-toolbar>-->
 
-    <mat-toolbar color="warn" class="example-toolbar">
+    <mat-toolbar color="warn" class="example-toolbar" *ngIf="!mobileQuery.matches">
       <mat-icon class='menuHover' (click)="snav.toggle()">menu</mat-icon>
       <h1 class="example-app-name" style="position: fixed; right: 46%;">foodApp</h1>
       <mat-icon *ngIf="!getStatus()" (click)="openBottomSheet()" class="menuHover" style="position: fixed; right: 60px;">search</mat-icon>
       <mat-icon *ngIf="!getStatus()" (click)="openBottomSheet()" class="menuHover" style="position: absolute; right: 10px;">account_circle</mat-icon>
     </mat-toolbar>
+
+    
   
     <mat-sidenav-container class="example-sidenav-container"
                             [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
@@ -45,6 +47,7 @@
       </mat-sidenav-content>
   
     </mat-sidenav-container>
+    <app-mobilenav *ngIf="mobileQuery.matches"></app-mobilenav>
   </div>
 
 <router-outlet></router-outlet>

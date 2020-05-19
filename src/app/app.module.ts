@@ -47,6 +47,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { LstCommandesComponent } from './lst-commandes/lst-commandes.component';
 import { HttpClientModule } from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { MobilenavComponent } from './mobilenav/mobilenav.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     SignUpComponent,
     HomeComponent,
     NotificationsComponent,
-    LstCommandesComponent
+    LstCommandesComponent,
+    MobilenavComponent
   ],
   imports: [
     BrowserModule,
