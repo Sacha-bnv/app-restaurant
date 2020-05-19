@@ -15,6 +15,14 @@
       <mat-icon *ngIf="!getStatus()" (click)="openBottomSheet()" class="menuHover" style="position: absolute; right: 10px;">account_circle</mat-icon>
     </mat-toolbar>
 
+    <mat-toolbar color="warn" class="example-toolbar" *ngIf="mobileQuery.matches">
+        <mat-icon class='menuHover' (click)="snav.toggle()">room</mat-icon>
+        <div class="adresseTxt">Mon adresse</div>
+        
+      <h1 class="example-app-name" style="position: fixed; right: 42%;">foodApp</h1>
+      <mat-icon *ngIf="!getStatus()" (click)="openBottomSheet()" class="menuHover" style="position: absolute; right: 10px;">account_circle</mat-icon>
+    </mat-toolbar>
+
     
   
     <mat-sidenav-container class="example-sidenav-container"
