@@ -1,11 +1,18 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
-    <mat-toolbar color="warn" class="example-toolbar">
+    <!--<mat-toolbar color="warn" class="example-toolbar">
       <mat-icon class='menuHover' (click)="snav.toggle()">menu</mat-icon>
       <h1 class="example-app-name">Restaurant</h1>
       <h1 class="example-app-name" style="position: fixed; right: 46%;">RestaurantApp</h1>
       <mat-icon *ngIf="!getStatus()" (click)="openBottomSheet()" class="menuHover" style="position: absolute; right: 20px;">more_vert</mat-icon>
       <mat-icon *ngIf="!getStatus()" (click)="openBottomSheet()" class="menuHover" matBadge="4" matBadgePosition="above after" matBadgeColor="primary" style="position: fixed; right: 70px;">notifications</mat-icon>
       <mat-icon *ngIf="!getStatus()" (click)="openBottomSheet()" class="menuHover" matBadge="7" matBadgePosition="above after" matBadgeColor="primary" style="position: absolute; right: 120px;">message</mat-icon>
+    </mat-toolbar>-->
+
+    <mat-toolbar color="warn" class="example-toolbar">
+      <mat-icon class='menuHover' (click)="snav.toggle()">menu</mat-icon>
+      <h1 class="example-app-name" style="position: fixed; right: 46%;">foodApp</h1>
+      <mat-icon *ngIf="!getStatus()" (click)="openBottomSheet()" class="menuHover" style="position: fixed; right: 60px;">search</mat-icon>
+      <mat-icon *ngIf="!getStatus()" (click)="openBottomSheet()" class="menuHover" style="position: absolute; right: 10px;">account_circle</mat-icon>
     </mat-toolbar>
   
     <mat-sidenav-container class="example-sidenav-container"
