@@ -1,13 +1,4 @@
-<!--<div class="header">
-  <div class="row">
-    <div class="col-lg"></div>
-    <div class="col-lg" style="text-align: center">
-      <div class="test"></div>
-    </div>
-    <div class="col-lg"></div>
-  </div>
-</div>-->
-<div class="row" style="width: 100%; height: 100%;">
+<div class="row" style="width: 100%; height: 100%;" *ngIf="!mobileQuery.matches">
   <div class="col-sm-7" style="background-color: white; width: 100%; height: 100%;">
     <div class="row">
       <div class="col" style="text-align: center; margin-top: 30px">
